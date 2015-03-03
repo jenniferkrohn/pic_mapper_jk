@@ -6,19 +6,23 @@
 </p>
 
 <p>
-  <strong>Author:</strong>
+<!--   <strong>Author:</strong>
   <%= @blog_post.author %>
-</p>
+</p> -->
+
+<p>
+  By <%= @blog_post.user.user_handle %> 
+</P>
 
 <p>
   <strong>Blog entry:</strong>
   <%= @blog_post.blog_entry %>
 </p>
 
-<p>
-  <strong>User:</strong>
+<!-- <p> -->
+<!--   <strong>User:</strong>
   <%= @blog_post.user_id %>
-</p>
+</p> -->
 
 <p>
   <strong>Entry date:</strong>
@@ -29,6 +33,18 @@
   <strong>Address:</strong>
   <%= @blog_post.address %>
 </p>
+
+<h4>Comments:</h4>
+  <% @blog_post.comments.each do |comment| %>
+<p><strong><%= comment.user.user_handle %></strong> said almost <%= time_ago_in_words(comment.created_at) %> ago:</p>
+    <p><%= comment.comment_entry %></p>
+  <% end %>
+
+<div>
+  <%= render 'comments/form'%>
+</div>
+
+
 
 <%= link_to 'Edit', edit_blog_post_path(@blog_post) %> |
 <%= link_to 'Back', blog_posts_path %>
