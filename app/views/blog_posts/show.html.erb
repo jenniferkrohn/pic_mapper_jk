@@ -33,10 +33,12 @@
   <strong>Address:</strong>
   <%= @blog_post.address %>
 </p>
-
+<p>
+  <%= image_tag @blog_post.image.url(:medium) %>
+</p>
 <h4>Comments:</h4>
   <% @blog_post.comments.each do |comment| %>
-<p><strong><%= comment.user.user_handle %></strong> said almost <%= time_ago_in_words(comment.created_at) %> ago:</p>
+<p><strong><%= comment.user.user_handle %></strong> commented <%= time_ago_in_words(comment.created_at) %> ago:</p>
     <p><%= comment.comment_entry %></p>
   <% end %>
 
