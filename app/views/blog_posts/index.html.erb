@@ -8,6 +8,7 @@
             <strong><%= blog_post.title %></strong>
              by <%= blog_post.user.user_handle %> 
             <p>In <%= blog_post.address %> on <%= blog_post.entry_date %></p>
+              <%= image_tag blog_post.image.url(:medium), class: "img_responsive" %>
         </div>
         <div class="panel-body">
           <p><%= blog_post.blog_entry %></p>

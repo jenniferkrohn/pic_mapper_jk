@@ -42,10 +42,11 @@
     <p><%= comment.comment_entry %></p>
   <% end %>
 
-<div>
-  <%= render 'comments/form'%>
-</div>
-
+<% if user_signed_in? %>
+  <div>
+    <%= render 'comments/form'%>
+  </div>
+<% end %>
 
 
 <%= link_to 'Edit', edit_blog_post_path(@blog_post) %> |
