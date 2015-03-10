@@ -1,4 +1,4 @@
-<h1>Listing Blog Posts</h1>
+<h2>Read these interesting blog posts:</h2>
 
   <div class="row">
     <% @blog_posts.each do |blog_post| %>  
@@ -23,5 +23,6 @@
     <% end %>  
   </div> <!-- end of row -->
   <div id="map-canvas"></div>
+
 <%= link_to 'New Blog post', new_blog_post_path %>
 

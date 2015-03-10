@@ -17,7 +17,7 @@
 
 $(document).ready(function (){
 	function initialize() {
-        var myLatlng = new google.maps.LatLng(33.790922, -84.424246);
+        var myLatlng = new google.maps.LatLng(latitude, longitude);
         
         var mapOptions = {
           center: myLatlng,
@@ -28,20 +28,13 @@ $(document).ready(function (){
         var map = new google.maps.Map(document.getElementById('map-canvas'),
             mapOptions);
       
-        
-
-        var image = "<%= asset_path 'falcon.png' %>"
-			  
 			  var marker = new google.maps.Marker({
 			      position: myLatlng,
 			      map: map,
-			      icon: image,
-			      title: 'Whatever',
-            animation: google.maps.Animation.DROP
+			      title: address
 			  });
 
-        var contentString = '<h2>Atlanta</h2>' +
-          '<p>they have a team called falcons.</p>'
+        var contentString = '<h2>'+ address +'</h2>' 
         ;
 
         var infowindow = new google.maps.InfoWindow({
@@ -51,7 +44,6 @@ $(document).ready(function (){
         google.maps.event.addListener(marker, 'click', function() {
            infowindow.open(map,marker);
         });
-
 
       }
       google.maps.event.addDomListener(window, 'load', initialize);

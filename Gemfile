@@ -49,3 +49,5 @@ gem 'paperclip'
 gem 'bootstrap-sass', '~> 3.3.3'
 
 gem 'figaro'
+
+gem 'geocoder'

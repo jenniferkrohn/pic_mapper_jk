@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150309015241) do
+ActiveRecord::Schema.define(version: 20150309234134) do
 
   create_table "blog_posts", force: :cascade do |t|
     t.string   "title"
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 20150309015241) do
     t.datetime "image_updated_at"
     t.float    "latitude"
     t.float    "longitude"
+    t.string   "country"
   end
 
   create_table "comments", force: :cascade do |t|

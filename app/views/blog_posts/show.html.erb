@@ -25,12 +25,20 @@
       <p>
         <%= image_tag @blog_post.image.url(:medium) %>
       </p>
+
         <h4>Comments:</h4>
           <% @blog_post.comments.each do |comment| %>
         <p><strong><%= comment.user.user_handle %></strong> commented <%= time_ago_in_words(comment.created_at) %> ago:</p>
         <p><%= comment.comment_entry %></p>
         <% end %>
     </div><!-- end of panel body -->
+
+    <%= javascript_tag do %>
+      latitude = '<%= j @blog_post.latitude.to_s %>';
+      longitude = '<%= j @blog_post.longitude.to_s %>';
+      address = '<%= j @blog_post.address %>';
+    <% end %>
+
       <% if user_signed_in? %>
        <%= render 'comments/form'%>
       <% end %>
@@ -40,3 +48,5 @@
     </div> <!-- end of panel -->
   </div> <!-- end of column -->
 </div> <!-- end of row -->
+      
+ <div id="destination-map"></div>
