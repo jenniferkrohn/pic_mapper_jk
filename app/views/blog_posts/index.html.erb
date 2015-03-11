@@ -31,31 +31,45 @@
 
 <script>
 function initialize() {
+
   var mapOptions = {
     zoom: 15,
     scrollwheel: false,
     center: new google.maps.LatLng(42.35804, -71.057329)
-  }
+  }; //added the ;
 
   var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
   var bounds = new google.maps.LatLngBounds();
-  var infowindow = new google.maps.InfoWindow();
+  var infowindow = new google.maps.InfoWindow({
+    content: "Check this out"
+  });
 
-  for(var i in sites)
+  for(var i in sites) 
   { 
     var p = sites[i];
     var latlng = new google.maps.LatLng(p[1], p[2]);
-    bounds.extend(latlng); 
 
+    bounds.extend(latlng);
     var marker = new google.maps.Marker ({
     position: latlng,
     map: map,
-    title: p[4]
+    title: p[0],
+    photo: p[5]
   });
+
+  google.maps.event.addListener(marker, 'click', function() {
+    infowindow.setContent('<h2>' + this.title + '</h2>' + '<img src="' + this.photo + '">');
+    infowindow.open(map,this);
+  });
+
   map.fitBounds(bounds);
-  }
+  // } commented out
+
 } // end initialize
+ 
+} //added  
 google.maps.event.addDomListener(window, 'load', initialize);
+
 </script>
 
 <%= link_to 'New Blog post', new_blog_post_path %>

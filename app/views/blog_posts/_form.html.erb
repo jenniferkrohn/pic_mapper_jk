@@ -15,29 +15,13 @@
     <%= f.label :title %><br>
     <%= f.text_field :title %>
   </div>
-  <div class="field invisible">
-    <%= f.label :author %><br>
-    <%= f.text_field :author %>
-  </div>
   <div class="field">
     <%= f.label :blog_entry %><br>
     <%= f.text_area :blog_entry %>
   </div>
   <div class="field">
-    <%= f.label :user_id %><br>
-    <%= f.number_field :user_id, value: current_user.id %>
-  </div>
-  <div class="field">
     <%= f.label :entry_date %><br>
     <%= f.date_select :entry_date %>
-  </div>
-  <div class="field">
-    <%= f.label :latitude %><br>
-    <%= f.text_field :latitude %>
-  </div>
-  <div class="field">
-    <%= f.label :longitude %><br>
-    <%= f.text_field :longitude %>
   </div>
   <div class="field">
     <%= f.label :address %><br>
@@ -49,5 +33,16 @@
   </div>
   <div class="actions">
     <%= f.submit %>
+  </div>
+  <div class="field invisible">
+    <%= f.number_field :user_id, value: current_user.id %>
+  </div>
+    <div class="field invisible">
+    <%= f.label :latitude %><br>
+    <%= f.text_field :latitude %>
+  </div>
+  <div class="field invisible">
+    <%= f.label :longitude %><br>
+    <%= f.text_field :longitude %>
   </div>
 <% end %>

@@ -7,5 +7,5 @@ class User < ActiveRecord::Base
   has_many :blog_posts
   has_many :comments
 
-
+	validates :user_handle, presence: true, uniqueness: true
 end
