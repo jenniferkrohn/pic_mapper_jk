@@ -1,28 +1,62 @@
 <h2>Read these interesting blog posts:</h2>
 
-  <div class="row">
-    <% @blog_posts.each do |blog_post| %>  
-      <div class="col-md-12">        
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <strong><%= blog_post.title %></strong>
-             by <%= blog_post.user.user_handle %> 
-            <p>In <%= blog_post.address %> on <%= blog_post.entry_date %></p>
-              <%= image_tag blog_post.image.url(:small), class: "img_responsive" %>
-        </div>
-        <div class="panel-body">
-          <p><%= blog_post.blog_entry %></p>
-        </div>
-        <div class="panel-footer">
-          <%= link_to 'Read More', blog_post, class: "btn btn-primary" %>
-          <%= link_to 'Edit', edit_blog_post_path(blog_post), class: "btn btn-warning" %>
-          <%= link_to 'Delete', blog_post, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></p>
-        </div> <!-- end of footer -->
-        </div> <!-- end of panel -->
-      </div> <!-- end of column -->
-    <% end %>  
-  </div> <!-- end of row -->
-  <div id="map-canvas"></div>
+<div class="row">
+  <% @blog_posts.each do |blog_post| %>  
+    <div class="col-md-12">        
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <strong><%= blog_post.title %></strong>
+           by <%= blog_post.user.user_handle %>
+
+          <p>In <%= blog_post.address %> on <%= blog_post.entry_date %></p>
+            <%= image_tag blog_post.image.url(:small), class: "img_responsive" %>
+      </div>
+      <div class="panel-body">
+        <p><%= blog_post.blog_entry %></p>
+      </div>
+      <div class="panel-footer">
+        <%= link_to 'Read More', blog_post, class: "btn btn-primary" %>
+        <%= link_to 'Edit', edit_blog_post_path(blog_post), class: "btn btn-warning" %>
+        <%= link_to 'Delete', blog_post, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></p>
+      </div> <!-- end of footer -->
+      </div> <!-- end of panel -->
+    </div> <!-- end of column -->
+  <% end %>  
+</div> <!-- end of row -->
+<div id="map-canvas"></div>
+
+<%= javascript_tag do %>
+  sites = <%=raw @latlongarray %>;
+<% end %> 
+
+<script>
+function initialize() {
+  var mapOptions = {
+    zoom: 15,
+    scrollwheel: false,
+    center: new google.maps.LatLng(42.35804, -71.057329)
+  }
+
+  var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+  var bounds = new google.maps.LatLngBounds();
+  var infowindow = new google.maps.InfoWindow();
+
+  for(var i in sites)
+  { 
+    var p = sites[i];
+    var latlng = new google.maps.LatLng(p[1], p[2]);
+    bounds.extend(latlng); 
+
+    var marker = new google.maps.Marker ({
+    position: latlng,
+    map: map,
+    title: p[4]
+  });
+  map.fitBounds(bounds);
+  }
+} // end initialize
+google.maps.event.addDomListener(window, 'load', initialize);
+</script>
 
 <%= link_to 'New Blog post', new_blog_post_path %>
 
