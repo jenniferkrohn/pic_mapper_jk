@@ -7,7 +7,8 @@ class BlogPostsController < ApplicationController
   # GET /blog_posts.json
   def index
     @blog_posts = BlogPost.all
-    @latlongarray = BlogPost.all.collect {|blog_post| [blog_post.address, blog_post.latitude, blog_post.longitude, blog_post.blog_entry[0...40], blog_post.title, blog_post.image.url(:thumb)]}
+    @latlongarray = BlogPost.all.collect {|blog_post| [blog_post.address, blog_post.latitude, blog_post.longitude, blog_post.blog_entry[0...40], blog_post.title, blog_post.image.url(:thumb), blog_post.id]}
+  
   end
 
   # GET /blog_posts/1

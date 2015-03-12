@@ -36,12 +36,12 @@ function initialize() {
     zoom: 15,
     scrollwheel: false,
     center: new google.maps.LatLng(42.35804, -71.057329)
-  }; //added the ;
+  }; 
 
   var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
   var bounds = new google.maps.LatLngBounds();
   var infowindow = new google.maps.InfoWindow({
-    content: "Check this out"
+    content: ''
   });
 
   for(var i in sites) 
@@ -54,20 +54,21 @@ function initialize() {
     position: latlng,
     map: map,
     title: p[0],
-    photo: p[5]
+    photo: p[5],
+    id: p[6]
   });
 
   google.maps.event.addListener(marker, 'click', function() {
-    infowindow.setContent('<h2>' + this.title + '</h2>' + '<img src="' + this.photo + '">');
+    infowindow.setContent('<a href="/blog_posts/' + this.id + '">' + this.title + '</a>' + '</br><img src="' + this.photo + '">');
+    //infowindow.setContent('<h4>' + this.title  + '</h4>' + '<img src="' + this.photo + '">');
     infowindow.open(map,this);
   });
 
   map.fitBounds(bounds);
-  // } commented out
 
-} // end initialize
+} 
  
-} //added  
+}   
 google.maps.event.addDomListener(window, 'load', initialize);
 
 </script>
