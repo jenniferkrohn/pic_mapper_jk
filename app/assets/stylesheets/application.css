@@ -25,3 +25,8 @@
 #invisible {
 	display: none
 }
+
+.navbar-brand {
+	font-family: 'Knewave', cursive;
+	color: blue
+}

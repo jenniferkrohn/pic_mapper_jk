@@ -14,14 +14,15 @@
   </script> 
   <%= csrf_meta_tags %>
   <%#= javascript_include_tag 'https://js.stripe.com/v2/' %>
-
+  <link href='http://fonts.googleapis.com/css?family=Knewave' rel='stylesheet' type='text/css'>
 </head>
 
 <% if user_signed_in? %>
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
-      <%= link_to "Posts", blog_posts_path, class: "navbar-brand" %>
+      <%= link_to "PicMapper", blog_posts_path, class: "navbar-brand" %>
+
     </div>
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-left">
@@ -29,6 +30,7 @@
         <!-- Future Links! -->
       </ul>
       <ul class="nav navbar-nav navbar-right">
+        <li><%= link_to 'New Blog Post', new_blog_post_path %><li>        
         <li><%= link_to "Edit Profile", edit_user_registration_path %></li>
         <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
       </ul>
